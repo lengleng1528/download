@@ -28,7 +28,7 @@
   <div class="ui attached pointing menu">
     <div class="ui container">
       <div class="right menu">
-        <a href="#" th:href="@{/}" class="item">订单列表</a>
+        <a href="#" th:href="@{/order}" class="item">订单列表</a>
         <a href="#" th:href="@{/task}" class="teal active item">下载中心</a>
       </div>
     </div>
@@ -103,10 +103,11 @@
           <tr>
             <th colspan="6">
               <div class="ui mini pagination menu" th:if="${pageInfo.pages}>1">
-                <!--这种方式不能传递form中的参数--th:href="@{/admin/blogs(page=${page.number}-1)}" -->
-                <a onclick="page(this)" th:attr="data-page=${pageInfo.prePage}" th:unless="${pageInfo.isFirstPage}" class=" item">上一页</a>
+                <a th:href="@{/task(pageNum=${pageInfo.prePage})}" class="item" th:unless="${pageInfo.isFirstPage}">上一页</a>
+                <a th:href="@{/task(pageNum=${pageInfo.nextPage})}" class="item" th:unless="${pageInfo.isLastPage}">下一页</a>
+                <!--<a onclick="page(this)" th:attr="data-page=${pageInfo.prePage}" th:unless="${pageInfo.isFirstPage}" class=" item">上一页</a>
                 <a onclick="page(this)" th:attr="data-page=${pageInfo.nextPage}" th:unless="${pageInfo.isLastPage}" class=" item">下一页</a>
-
+-->
               </div>
 
             </th>
@@ -115,7 +116,7 @@
 
         </table>
 
-        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+        <div th:fragment="messagelist" class="ui success message" th:unless="${#strings.isEmpty(message)}">
           <i class="close icon"></i>
           <div class="header">提示：</div>
           <p th:text="${message}">恭喜，操作成功！</p>

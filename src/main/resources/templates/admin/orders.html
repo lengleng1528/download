@@ -29,7 +29,7 @@
   <div class="ui attached pointing menu">
     <div class="ui container">
       <div class="right menu">
-        <a href="#" th:href="@{/}" class="teal active item">订单列表</a>
+        <a href="#" th:href="@{/order}" class="teal active item">订单列表</a>
         <a href="#" th:href="@{/task}" class="item">下载中心</a>
       </div>
     </div>
@@ -75,7 +75,7 @@
                 <div class="menu">
                   <div  class="item" data-value="0" th:data-value="0" th:text="未投诉">错误日志</div>
                   <div  class="item" data-value="1" th:data-value="1" th:text="已投诉">错误日志</div>
-                      </div>
+                </div>
               </div>
             </div>
           </div>
@@ -85,7 +85,9 @@
             <button type="button" id="search-btn" class="ui mini teal basic button"><i class="search icon"></i>搜索</button>
           </div>
 
-          <a href="#" th:href="@{/order/output}"class="ui mini right floated teal basic button">导出订单</a>
+          <div class="field">
+            <button type="button" id="output-btn" class="ui mini teal basic button">导出订单</button>
+          </div>
 
         </div>
 
@@ -111,8 +113,14 @@
             <td th:text="${iterStat.count}">1</td>
             <td th:text="${order.orderId}">12334</td>
             <td th:text="${#dates.format(order.orderAddTime,'yyyy-MM-dd')}">2017-10-02 09:45</td>
-            <td th:text="${order.orderStatus} ? '是' : '否'">是</td>
-            <td th:text="${order.complaintStatus} ? '发布':'草稿'">草稿</td>
+            <td th:text="${order.orderStatus} ? '配送中' : '已送达'">是</td>
+            <td th:if="${order.orderStatus}==0">订单生成</td>
+            <td th:if="${order.orderStatus}==1">待配送</td>
+            <td th:if="${order.orderStatus}==2">配送中</td>
+            <td th:if="${order.orderStatus}==3">已送达</td>
+            <td th:if="${order.orderStatus}==4">已取消</td>
+            <td th:if="${order.orderStatus}==5">配送异常</td>
+            <td th:text="${order.complaintStatus} ? '已投诉':'未投诉'">未投诉</td>
             <td>
               <a href="#"  class="ui mini teal basic button">详情</a>
             </td>
@@ -123,9 +131,12 @@
           <tr>
             <th colspan="6">
               <div class="ui mini pagination menu" th:if="${pageInfo.pages}>1">
-                <!--这种方式不能传递form中的参数--th:href="@{/admin/blogs(page=${page.number}-1)}" -->
+                <a th:href="@{/order(pageNum=${pageInfo.prePage})}" class="item" th:unless="${pageInfo.isFirstPage}">上一页</a>
+                <a th:href="@{/order(pageNum=${pageInfo.nextPage})}" class="item" th:unless="${pageInfo.isLastPage}">下一页</a>
+                <!--
                 <a onclick="page(this)" th:attr="data-page=${pageInfo.prePage}" th:unless="${pageInfo.isFirstPage}" class=" item">上一页</a>
                 <a onclick="page(this)" th:attr="data-page=${pageInfo.nextPage}" th:unless="${pageInfo.isLastPage}" class=" item">下一页</a>
+                -->
 
               </div>
 
@@ -199,10 +210,23 @@
         loaddata();
     });
 
+    $("#output-btn").click(function () {
+        $("[name='page']").val(1);
+        loaddata1();
+    });
+
 
     //Ajax请求
     function loaddata() {
         $("#table-container").load("/order/search",{
+            orderStatus : $("[name='status']").val(),
+            complaintStatus : $("[name='complaint']").val()
+        });
+    }
+
+    //Ajax请求
+    function loaddata1() {
+        $("#table-container").load("/order/output",{
             orderStatus : $("[name='status']").val(),
             complaintStatus : $("[name='complaint']").val()
         });

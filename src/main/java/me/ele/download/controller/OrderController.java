@@ -28,7 +28,7 @@ public class OrderController {
     private TaskService taskService;
 
     //分页查询全部订单
-    @GetMapping("/")
+    @GetMapping("/order")
     public String list(@RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum,Model model){
         PageHelper.startPage(pageNum,3);
         List<Order> list = orderService.getAllOrders();
@@ -53,15 +53,19 @@ public class OrderController {
 
     //点击导出订单给提示，插入任务表并跳转
     @PostMapping("/order/output")
-    public String output(OrderSearch orderSearch){
+    public String output(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,OrderSearch orderSearch, Model model){
         Task task = new Task();
         String condition = JSON.toJSONString(orderSearch);
-        //task.setUser();
+        task.setId(null);
+        task.setUser("admin");
+        task.setStatus(0);
+        task.setType(1);
         task.setCondition(condition);
         task.setCreatedAt(new Date());
         task.setUpdatedAt(new Date());
         taskService.saveTask(task);
-        return "redirect:/task";
+        model.addAttribute("message","新增任务成功,请稍后在下载中心中查看");
+        return "admin/tasks::messagelist";
     }
 
 }

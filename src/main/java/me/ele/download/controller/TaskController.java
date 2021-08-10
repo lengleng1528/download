@@ -23,8 +23,6 @@ public class TaskController {
     //展示所有的任务
     @GetMapping("/task")
     public String list(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum, Model model) {
-        //按照排序字段 倒序 排序
-        //String orderBy = "update_time desc";
         PageHelper.startPage(pageNum, 3);
         List<Task> list = taskService.listAllTask();
         PageInfo<Task> pageInfo = new PageInfo<Task>(list);
