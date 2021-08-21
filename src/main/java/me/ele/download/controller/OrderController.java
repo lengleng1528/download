@@ -30,7 +30,7 @@ public class OrderController {
     //分页查询全部订单
     @GetMapping("/order")
     public String list(@RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum,Model model){
-        PageHelper.startPage(pageNum,3);
+        PageHelper.startPage(pageNum,5);
         List<Order> list = orderService.getAllOrders();
         PageInfo<Order> pageInfo = new PageInfo<Order>(list);
         //System.out.println(pageInfo.isHasNextPage());
@@ -42,7 +42,7 @@ public class OrderController {
     //订单条件查询
     @PostMapping("/order/search")
     public String search(@RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum, OrderSearch orderSearch, Model model){
-        PageHelper.startPage(pageNum,3);
+        PageHelper.startPage(pageNum,5);
         List<Order> list = orderService.listOrderByVo(orderSearch);
         PageInfo<Order> pageInfo = new PageInfo<Order>(list);
         //System.out.println(pageInfo.getPageNum());

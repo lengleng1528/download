@@ -113,7 +113,6 @@
             <td th:text="${iterStat.count}">1</td>
             <td th:text="${order.orderId}">12334</td>
             <td th:text="${#dates.format(order.orderAddTime,'yyyy-MM-dd')}">2017-10-02 09:45</td>
-            <td th:text="${order.orderStatus} ? '配送中' : '已送达'">是</td>
             <td th:if="${order.orderStatus}==0">订单生成</td>
             <td th:if="${order.orderStatus}==1">待配送</td>
             <td th:if="${order.orderStatus}==2">配送中</td>
