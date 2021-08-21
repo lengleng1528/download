@@ -42,9 +42,9 @@ public class TaskController {
         return "admin/tasks::tasklist";
     }
 
-    //下载接口
+    // 下载接口
     @PostMapping("/task/download")
-    public String download(){
+    public String download(Long taskId){
 
         return "";
     }

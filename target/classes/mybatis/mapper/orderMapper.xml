@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.ele.download.mapper.OrderMapper">
+
+    <resultMap id="order" type="me.ele.download.pojo.Order">
+        <id property="id" column="id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="orderAddTime" column="order_add_time"/>
+        <result property="orderTerminalTime" column="order_terminal_time"/>
+        <result property="orderStatus" column="order_status"/>
+        <result property="createAt" column="created_at"/>
+        <result property="updateAt" column="updated_at"/>
+        <result property="complaintStatus" column="complaint_status"/>
+        <result property="claimStatus" column="claim_status"/>
+    </resultMap>
+
+
+    <select id="findOrderByVo" resultMap="order" parameterType="me.ele.download.vo.OrderSearch" >
+        SELECT order_id, order_add_time, order_status, complaint_status FROM tb_order
+        <where>
+            <if test="orderStatus != null">
+                and order_status = #{orderStatus}
+            </if>
+            <if test="complaintStatus != null">
+                and complaint_status = #{complaintStatus}
+            </if>
+        </where>
+        ORDER BY updated_at DESC
+    </select>
+
+    <select id="listAll" resultMap="order">
+        SELECT order_id, order_add_time, order_status, complaint_status FROM tb_order
+        ORDER BY updated_at DESC
+    </select>
+
+</mapper>
