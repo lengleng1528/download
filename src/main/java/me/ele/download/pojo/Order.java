@@ -1,5 +1,7 @@
 package me.ele.download.pojo;
 
+import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.metadata.BaseRowModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +11,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order {
+public class Order  {
 
     /**
      * 自增主键
@@ -19,44 +21,52 @@ public class Order {
     /**
      * 订单id
      * */
+    @ExcelProperty("订单id")
     private Long orderId;
 
     /**
      * 下单时间
      * */
+    @ExcelProperty("下单时间")
     private Date orderAddTime;
 
     /**
      * 订单终止时间
      * */
+    @ExcelProperty("订单终止时间")
     private Date orderTerminalTime;
 
     /**
      * 订单所有状态
      * 0:订单生成, 1:待配送, 2:配送中, 3:已送达, 4:已取消, 5:配送异常
      * */
+    @ExcelProperty("订单状态")
     private Integer orderStatus;
 
     /**
      * 创建时间
      * */
+    @ExcelProperty("创建时间")
     private Date createAt;
 
     /**
      * 更新时间
      * */
+    @ExcelProperty("更新时间")
     private Date updateAt;
 
     /**
      * 订单投诉状态
      * 0:未投诉, 1:已投诉
      * */
+    @ExcelProperty("订单投诉状态")
     private Integer complaintStatus;
 
     /**
      * 订单索赔状态
      * 0:未索赔, 1:已索赔
      * */
+    @ExcelProperty("订单索赔状态")
     private Integer claimStatus;
 
 

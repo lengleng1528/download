@@ -16,6 +16,11 @@
         <result property="claimStatus" column="claim_status"/>
     </resultMap>
 
+    <sql id="Order_Column_List">
+        id,order_id,order_add_time,order_terminal_time,order_status,created_at,updated_at,complaint_status,claim_status
+    </sql>
+
+
 
     <select id="findOrderByVo" resultMap="order" parameterType="me.ele.download.vo.OrderSearch" >
         SELECT order_id, order_add_time, order_status, complaint_status FROM tb_order
@@ -31,7 +36,7 @@
     </select>
 
     <select id="listAll" resultMap="order">
-        SELECT order_id, order_add_time, order_status, complaint_status FROM tb_order
+        SELECT <include refid="Order_Column_List"/> FROM tb_order
         ORDER BY updated_at DESC
     </select>
 

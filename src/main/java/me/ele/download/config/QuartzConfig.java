@@ -16,7 +16,7 @@ public class QuartzConfig {
     // 2.将FactoryBean装配到Spring容器里.
     // 3.将FactoryBean注入给其他的Bean.
     // 4.该Bean得到的是FactoryBean所管理的对象实例.
-    @Bean
+    //@Bean
     public JobDetailFactoryBean executeOrderExportJobDetail(){
         JobDetailFactoryBean factoryBean = new JobDetailFactoryBean();
         factoryBean.setJobClass(ExecuteOrderExportJob.class);
@@ -27,7 +27,7 @@ public class QuartzConfig {
         return factoryBean;
     }
 
-    @Bean
+    //@Bean
     public SimpleTriggerFactoryBean executeOrderExportTrigger(JobDetail executeOrderExportJobDetail){
         SimpleTriggerFactoryBean factoryBean = new SimpleTriggerFactoryBean();
         factoryBean.setJobDetail(executeOrderExportJobDetail);

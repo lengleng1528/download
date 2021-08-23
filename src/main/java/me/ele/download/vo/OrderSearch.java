@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,5 +21,51 @@ public class OrderSearch{
      * 0:未投诉, 1:已投诉
      * */
     private Integer complaintStatus;
+
+    /**
+     * 订单索赔状态
+     * 0:未索赔, 1:已索赔
+     * */
+    private Integer claimStatus;
+
+    /**
+     * 创建时间-开始
+     * */
+    private Date createAtStart;
+
+    /**
+     * 创建时间-结尾
+     */
+    private Date createAtEnd;
+
+
+
+
+//    /**
+//     * 订单id
+//     * */
+//    private Long orderId;
+//
+//    /**
+//     * 下单时间
+//     * */
+//    private Date orderAddTime;
+//
+//    /**
+//     * 订单终止时间
+//     * */
+//    private Date orderTerminalTime;
+//
+
+
+//    /**
+//     * 更新时间
+//     * */
+//    private Date updateAt;
+
+
+
+
+
 
 }
