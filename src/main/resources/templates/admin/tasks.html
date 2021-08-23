@@ -89,7 +89,10 @@
           <tbody>
           <tr th:each="task,iterStat: ${pageInfo.list}">
             <td th:text="${iterStat.count}">1</td>
-            <td th:text="${task.status} ? '是' : '否'">是</td>
+            <td th:if="${task.status}==0">创建</td>
+            <td th:if="${task.status}==1">运行中</td>
+            <td th:if="${task.status}==2">失败</td>
+            <td th:if="${task.status}==3">成功</td>
             <td th:text="${task.user}">创建人名称</td>
             <td th:text="${#dates.format(task.createdAt,'yyyy-MM-dd')}">2017-10-02 09:45</td>
             <td>

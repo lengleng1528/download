@@ -23,7 +23,7 @@ public class TaskController {
     //展示所有的任务
     @GetMapping("/task")
     public String list(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum, Model model) {
-        PageHelper.startPage(pageNum, 3);
+        PageHelper.startPage(pageNum, 5);
         List<Task> list = taskService.listAllTask();
         PageInfo<Task> pageInfo = new PageInfo<Task>(list);
         model.addAttribute("pageInfo", pageInfo);
@@ -34,7 +34,7 @@ public class TaskController {
     //任务条件查询
     @PostMapping("/task/search")
     public String search(@RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum, TaskSearch taskSearch, Model model){
-        PageHelper.startPage(pageNum,3);
+        PageHelper.startPage(pageNum,5);
         List<Task> list = taskService.listTaskByVo(taskSearch);
         PageInfo<Task> pageInfo = new PageInfo<Task>(list);
         model.addAttribute("pageInfo",pageInfo);
