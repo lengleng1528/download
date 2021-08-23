@@ -14,6 +14,16 @@
         <result property="updatedAt" column="updated_at"/>
     </resultMap>
 
+    <sql id="VoColumns">
+        id, `user`, status, type, `condition`, created_at, updated_at
+    </sql>
+
+    <sql id="QueryWhere">
+        <where>
+
+        </where>
+    </sql>
+
     <!--查询全部任务-->
     <select id="findAll" resultMap="task">
         SELECT user,status,created_at FROM tb_task
@@ -24,6 +34,17 @@
         SELECT user,status,created_at FROM tb_task
         where status = #{status}
         ORDER BY updated_at DESC
+    </select>
+
+    <select id="queryTaskById" resultMap="task" parameterType="java.lang.Long">
+        SELECT
+        <include refid="VoColumns"/>
+        FROM tb_task
+        <where>
+            <if test="taskId != null">
+                AND id = #{taskId}
+            </if>
+        </where>
     </select>
 
 

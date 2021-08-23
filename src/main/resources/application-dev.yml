@@ -10,3 +10,12 @@ logging:
     root: info
     com.hogwarts.springboot: debug
   file: log/blog-dev.log
+
+aliyun:
+  oss:
+    file:
+      endpoint: zjh
+      keyid: zjh
+      keysecret: zjh
+      filehost: zjh
+      bucketname: zjh

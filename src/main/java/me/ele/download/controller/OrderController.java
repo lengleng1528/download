@@ -1,4 +1,5 @@
 package me.ele.download.controller;
+import me.ele.download.vo.DownloadCenter;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
@@ -8,6 +9,7 @@ import me.ele.download.pojo.Task;
 import me.ele.download.service.OrderService;
 import me.ele.download.service.TaskService;
 import me.ele.download.vo.OrderSearch;
+import me.ele.download.vo.TaskCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +47,7 @@ public class OrderController {
         PageHelper.startPage(pageNum,3);
         List<Order> list = orderService.listOrderByVo(orderSearch);
         PageInfo<Order> pageInfo = new PageInfo<Order>(list);
-        //System.out.println(pageInfo.getPageNum());
+        // System.out.println(pageInfo.getPageNum());
         model.addAttribute("pageInfo",pageInfo);
         //只更新表格中的数据
         return "admin/orders::orderlist";
@@ -55,7 +57,10 @@ public class OrderController {
     @PostMapping("/order/output")
     public String output(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,OrderSearch orderSearch, Model model){
         Task task = new Task();
-        String condition = JSON.toJSONString(orderSearch);
+        TaskCondition taskCondition = new TaskCondition();
+        taskCondition.setOrderSearch(orderSearch);
+        taskCondition.setDownloadCenter(new DownloadCenter());
+        String condition = JSON.toJSONString(taskCondition);
         task.setId(null);
         task.setUser("admin");
         task.setStatus(0);

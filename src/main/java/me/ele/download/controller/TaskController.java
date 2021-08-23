@@ -2,6 +2,7 @@ package me.ele.download.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import me.ele.download.ServiceException;
 import me.ele.download.pojo.Task;
 import me.ele.download.service.TaskService;
 import me.ele.download.vo.TaskSearch;
@@ -44,9 +45,9 @@ public class TaskController {
 
     // 下载接口
     @PostMapping("/task/download")
-    public String download(Long taskId){
-        String fileUrl = taskService.getDownloadFile(taskId);
-
-        return "";
+    public String download(String fileName,Model model) throws ServiceException {
+        String fileUrl = taskService.getDownloadFile(fileName);
+        model.addAttribute("fileUrl", fileUrl);
+        return "admin/tasks";
     }
 }

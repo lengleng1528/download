@@ -10,3 +10,10 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
 
 comment.avatar: /images/avatar.png
+
+aliyun:
+  oss:
+    file:
+      endpoint: zjh
+      keyid:
+      keysecret:

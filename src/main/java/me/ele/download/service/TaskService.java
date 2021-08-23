@@ -1,5 +1,6 @@
 package me.ele.download.service;
 
+import me.ele.download.ServiceException;
 import me.ele.download.pojo.Task;
 import me.ele.download.vo.TaskSearch;
 
@@ -13,5 +14,5 @@ public interface TaskService {
 
     void saveTask(Task task);
 
-    String getDownloadFile(Long taskId);
+    String getDownloadFile(String fileName) throws ServiceException;
 }

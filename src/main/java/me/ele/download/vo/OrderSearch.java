@@ -20,4 +20,9 @@ public class OrderSearch{
      * */
     private Integer complaintStatus;
 
+    /**
+     * 订单号
+     */
+    private Long orderId;
+
 }
