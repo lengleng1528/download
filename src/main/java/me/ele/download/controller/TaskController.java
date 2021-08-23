@@ -45,6 +45,7 @@ public class TaskController {
     // 下载接口
     @PostMapping("/task/download")
     public String download(Long taskId){
+        String fileUrl = taskService.getDownloadFile(taskId);
 
         return "";
     }

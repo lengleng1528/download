@@ -16,4 +16,6 @@ public interface TaskMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     @Insert("insert into tb_task values (#{id},#{user},#{status},#{type},#{condition},#{createdAt},#{updatedAt})")
     void addTask(Task task);
+
+    Task queryTaskById(Long taskId);
 }

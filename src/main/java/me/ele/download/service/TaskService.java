@@ -12,4 +12,6 @@ public interface TaskService {
     List<Task> listTaskByVo(TaskSearch taskSearch);
 
     void saveTask(Task task);
+
+    String getDownloadFile(Long taskId);
 }
