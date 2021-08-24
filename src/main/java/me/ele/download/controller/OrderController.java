@@ -54,13 +54,14 @@ public class OrderController {
     public String output(OrderSearch orderSearch, Model model){
         Task task = new Task();
         String condition = JSON.toJSONString(orderSearch);
-        task.setId(null);
+        //task.setId(null);
         task.setUser("admin");
         task.setStatus(0);
         task.setType(1);
         task.setCondition(condition);
         task.setCreatedAt(new Date());
         task.setUpdatedAt(new Date());
+        System.out.println(task.getCondition());
         taskService.saveTask(task);
         model.addAttribute("message","新增任务成功,请稍后在下载中心中查看");
         return "admin/tasks::messagelist";

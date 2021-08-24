@@ -37,6 +37,11 @@ public class Task {
      * */
     private String condition;
 
+    /**
+     * url
+     * */
+    private String url;
+
 
     /**
      * 创建时间

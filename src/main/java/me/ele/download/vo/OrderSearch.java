@@ -11,7 +11,7 @@ public class OrderSearch{
     /**
      * 订单号
      * */
-    private String orderId;
+    private Long orderId;
 
     /**
      * 订单所有状态
