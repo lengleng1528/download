@@ -33,7 +33,6 @@ public class OrderController {
         PageHelper.startPage(pageNum,5);
         List<Order> list = orderService.getAllOrders();
         PageInfo<Order> pageInfo = new PageInfo<Order>(list);
-        //System.out.println(pageInfo.isHasNextPage());
         model.addAttribute("pageInfo",pageInfo);
         return "admin/orders";
     }
@@ -45,7 +44,6 @@ public class OrderController {
         PageHelper.startPage(pageNum,5);
         List<Order> list = orderService.listOrderByVo(orderSearch);
         PageInfo<Order> pageInfo = new PageInfo<Order>(list);
-        //System.out.println(pageInfo.getPageNum());
         model.addAttribute("pageInfo",pageInfo);
         //只更新表格中的数据
         return "admin/orders::orderlist";
@@ -53,7 +51,7 @@ public class OrderController {
 
     //点击导出订单给提示，插入任务表并跳转
     @PostMapping("/order/output")
-    public String output(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,OrderSearch orderSearch, Model model){
+    public String output(OrderSearch orderSearch, Model model){
         Task task = new Task();
         String condition = JSON.toJSONString(orderSearch);
         task.setId(null);
