@@ -1,0 +1,34 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_2021_8_24,_2_28_下午_[Default_Changelist]1" date="1629786553346" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2021_8_24,_2_28_下午_[Default_Changelist]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 2021/8/24, 2:28 下午 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/me/ele/download/service/TaskService.class" />
+    <option name="AFTER_PATH" value="target/classes/me/ele/download/service/TaskService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2021_8_24,_2_28_下午_[Default_Changelist]1/TaskService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/me/ele/download/aspect/LogAspect.class" />
+    <option name="AFTER_PATH" value="target/classes/me/ele/download/aspect/LogAspect.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2021_8_24,_2_28_下午_[Default_Changelist]1/LogAspect.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/me/ele/download/controller/TaskController.class" />
+    <option name="AFTER_PATH" value="target/classes/me/ele/download/controller/TaskController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2021_8_24,_2_28_下午_[Default_Changelist]1/TaskController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/me/ele/download/controller/OrderController.class" />
+    <option name="AFTER_PATH" value="target/classes/me/ele/download/controller/OrderController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2021_8_24,_2_28_下午_[Default_Changelist]1/OrderController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/me/ele/download/service/impl/TaskServiceImpl.class" />
+    <option name="AFTER_PATH" value="target/classes/me/ele/download/service/impl/TaskServiceImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2021_8_24,_2_28_下午_[Default_Changelist]1/TaskServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/me/ele/download/vo/OrderSearch.class" />
+    <option name="AFTER_PATH" value="target/classes/me/ele/download/vo/OrderSearch.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2021_8_24,_2_28_下午_[Default_Changelist]1/OrderSearch.class" />
+  </binary>
+</changelist>
