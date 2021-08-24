@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="admin/_fragments :: head(~{::title})">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>下载中心</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+  <link rel="stylesheet" href="../../static/css/me.css">
+</head>
+<body>
+
+  <!--导航-->
+  <nav th:replace="admin/_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
+    <div class="ui container">
+      <div class="ui inverted secondary stackable menu">
+        <h2 class="ui teal header item">管理后台</h2>
+        <a href="#" class="active m-item item m-mobile-hide"><i class="mini home icon"></i>博客</a>
+        <a href="#" class=" m-item item m-mobile-hide"><i class="mini idea icon"></i>分类</a>
+        <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
+      </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+      <i class="sidebar icon"></i>
+    </a>
+  </nav>
+
+
+  <div class="ui attached pointing menu">
+    <div class="ui container">
+      <div class="right menu">
+        <a href="#" th:href="@{/order}" class="item">订单列表</a>
+        <a href="#" th:href="@{/task}" class="teal active item">下载中心</a>
+      </div>
+    </div>
+  </div>
+
+  <!--中间内容-->
+  <div  class="m-container-small m-padded-tb-big">
+    <div class="ui container">
+      <div  class="ui secondary segment form">
+        <!--搜索表单-->
+        <!--动态赋值pageNum-->
+        <input type="hidden" name="page">
+
+        <div class="inline fields">
+
+          <!--任务状态搜索-->
+          <div class="field">
+            <div class="ui labeled action input">
+              <div class="ui type selection dropdown">
+                <input type="hidden" name="taskStatus">
+                <i class="dropdown icon"></i>
+                <div class="default text">任务状态</div>
+                <div class="menu">
+                  <div class="item" data-value="1" th:data-value="0" th:text="创建">错误日志</div>
+                  <div class="item" data-value="1" th:data-value="1" th:text="运行中">错误日志</div>
+                  <div class="item" data-value="1" th:data-value="2" th:text="失败">错误日志</div>
+                  <div class="item" data-value="1" th:data-value="3" th:text="成功">错误日志</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!--提交表单-->
+          <div class="field">
+            <button type="button" id="search-btn" class="ui mini teal basic button"><i class="search icon"></i>搜索</button>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div id="table-container">
+
+        <table th:fragment="tasklist" class="ui compact teal table">
+          <thead>
+          <tr>
+            <th></th>
+            <th>任务状态</th>
+            <th>创建人名称</th>
+            <th>创建时间</th>
+            <th>操作</th>
+          </tr>
+
+          </thead>
+
+          <tbody>
+          <tr th:each="task,iterStat: ${pageInfo.list}">
+            <td th:text="${iterStat.count}">1</td>
+            <td th:if="${task.status}==0">创建</td>
+            <td th:if="${task.status}==1">运行中</td>
+            <td th:if="${task.status}==2">失败</td>
+            <td th:if="${task.status}==3">成功</td>
+            <td th:text="${task.user}">创建人名称</td>
+            <td th:text="${#dates.format(task.createdAt,'yyyy-MM-dd')}">2017-10-02 09:45</td>
+            <td>
+              <!--<a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui mini teal basic button">下载</a>-->
+              <a href="#"  class="ui mini teal basic button">下载</a>
+            </td>
+          </tr>
+          </tbody>
+
+          <tfoot>
+          <tr>
+            <th colspan="6">
+              <div class="ui mini pagination menu" th:if="${pageInfo.pages}>1">
+                <a th:href="@{/task(pageNum=${pageInfo.prePage})}" class="item" th:unless="${pageInfo.isFirstPage}">上一页</a>
+                <a th:href="@{/task(pageNum=${pageInfo.nextPage})}" class="item" th:unless="${pageInfo.isLastPage}">下一页</a>
+                <!--<a onclick="page(this)" th:attr="data-page=${pageInfo.prePage}" th:unless="${pageInfo.isFirstPage}" class=" item">上一页</a>
+                <a onclick="page(this)" th:attr="data-page=${pageInfo.nextPage}" th:unless="${pageInfo.isLastPage}" class=" item">下一页</a>
+-->
+              </div>
+
+            </th>
+          </tr>
+          </tfoot>
+
+        </table>
+
+        <div th:fragment="messagelist" class="ui success message" th:unless="${#strings.isEmpty(message)}">
+          <i class="close icon"></i>
+          <div class="header">提示：</div>
+          <p th:text="${message}">恭喜，操作成功！</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+
+  <!--底部footer-->
+  <footer th:replace="admin/_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
+
+  </footer>
+
+
+  <!--/*/<th:block th:replace="_fragments :: script">/*/-->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+  <!--/*/</th:block>/*/-->
+
+
+
+  <script>
+    $('.menu.toggle').click(function () {
+      $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $('.ui.dropdown').dropdown({
+      on : 'hover'
+    });
+
+    //消息提示关闭初始化
+    $('.message .close')
+        .on('click', function () {
+            $(this)
+                .closest('.message')
+                .transition('fade');
+        });
+
+    $('#clear-btn')
+        .on('click', function() {
+            $('.ui.type.dropdown')
+                .dropdown('clear')
+            ;
+        })
+    ;
+
+    function page(obj) {
+        $("[name='page']").val($(obj).data("page"));
+        loaddata();
+    }
+
+    $("#search-btn").click(function () {
+        $("[name='page']").val(1);
+        loaddata();
+    });
+
+
+    //Ajax请求
+    function loaddata() {
+        $("#table-container").load("/task/search",{
+            status : $("[name='taskStatus']").val()
+        });
+    }
+
+  </script>
+</body>
+</html>

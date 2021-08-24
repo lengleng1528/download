@@ -9,6 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OrderSearch{
     /**
+     * 订单号
+     * */
+    private String orderId;
+
+    /**
      * 订单所有状态
      * 0:订单生成, 1:待配送, 2:配送中, 3:已送达, 4:已取消, 5:配送异常
      * */
