@@ -52,4 +52,9 @@ public class Task {
      * 更新时间
      * */
     private Date updatedAt;
+
+    /**
+     * 下载地址
+     */
+    private String url;
 }

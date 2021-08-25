@@ -18,4 +18,8 @@ public interface TaskService {
     List<Task> listTaskByParam(TaskQueryParam taskQueryParam);
 
     void changeTaskStatus(Task task, TaskStatusEnum taskStatusEnum);
+
+    public void changeTaskUrl(Task task,String url);
+
+
 }
