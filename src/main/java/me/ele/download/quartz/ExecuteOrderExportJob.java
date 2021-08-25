@@ -20,8 +20,8 @@ public class ExecuteOrderExportJob implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         CompExecuteOrderExportTaskDto compExecuteOrderExportTaskDto = new CompExecuteOrderExportTaskDto();
-        compExecuteOrderExportTaskDto.setCreatedAtStart(new Timestamp(System.currentTimeMillis()-5*60*1000));
-        compExecuteOrderExportTaskDto.setCreatedAtEnd(new Timestamp(System.currentTimeMillis()+5*60*1000));
+        compExecuteOrderExportTaskDto.setCreatedAtStart(new Timestamp(System.currentTimeMillis()-24*60*60*1000));
+        compExecuteOrderExportTaskDto.setCreatedAtEnd(new Timestamp(System.currentTimeMillis()+24*60*60*1000));
         executeOrderExportTaskService.run(compExecuteOrderExportTaskDto);
     }
 }

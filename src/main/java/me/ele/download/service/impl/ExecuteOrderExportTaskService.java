@@ -51,7 +51,7 @@ public class ExecuteOrderExportTaskService extends AbstractTask<CompExecuteOrder
 
     @Override
     protected void preProcess(CompExecuteOrderExportTaskDto param) throws Exception {
-        logger.info("开始执行官网订单导出任务, param = {}", JSON.toJSONString(param));
+        //logger.info("开始执行官网订单导出任务, param = {}", JSON.toJSONString(param));
     }
 
 
@@ -80,9 +80,11 @@ public class ExecuteOrderExportTaskService extends AbstractTask<CompExecuteOrder
         preExport(task);
 
         //3. 根据task的查询条件查询、生成文件流、推送oss
-        String condition = task.getCondition();
-        OrderSearch orderSearch = (me.ele.download.vo.OrderSearch) JSON.parse(condition);
-        List<Order> orders = orderService.listOrderByVo(orderSearch);
+//        String condition = task.getCondition();
+//        OrderSearch orderSearch = (me.ele.download.vo.OrderSearch) JSON.parse(condition);
+//        List<Order> orders = orderService.listOrderByVo(orderSearch);
+
+        List<Order> orders = orderService.getAllOrders();
 
         logger.info("task : {} 执行导出任务",JSON.toJSONString(task));
 
@@ -95,6 +97,8 @@ public class ExecuteOrderExportTaskService extends AbstractTask<CompExecuteOrder
         String url = ossfileService.uploadExcel2OSS(new ByteArrayInputStream(out.toByteArray()),fileName);
         //该url可直接返回给前端下载
         String returnUrl = url.substring(0,url.lastIndexOf("?"))+".xlsx";
+        //
+        taskService.changeTaskUrl(task,returnUrl);
         System.out.println(returnUrl);
         postExport(task);
 
@@ -107,7 +111,7 @@ public class ExecuteOrderExportTaskService extends AbstractTask<CompExecuteOrder
     }
 
     private void postExport(Task task){
-        taskService.changeTaskStatus(task,TaskStatusEnum.FAILURE);
+        taskService.changeTaskStatus(task,TaskStatusEnum.SUCCESS);
         //redis-1
     }
 

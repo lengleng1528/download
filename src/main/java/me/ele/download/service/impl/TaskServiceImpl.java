@@ -42,5 +42,10 @@ public class TaskServiceImpl implements TaskService {
         taskMapper.changeTaskStatus(task.getId(),taskStatusEnum.getStatus());
     }
 
+    @Override
+    public void changeTaskUrl(Task task,String url){
+        taskMapper.changeTaskUrl(task.getId(), url);
+    }
+
 
 }

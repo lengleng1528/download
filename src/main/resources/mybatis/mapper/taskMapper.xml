@@ -12,10 +12,11 @@
         <result property="condition" column="condition"/>
         <result property="createdAt" column="created_at"/>
         <result property="updatedAt" column="updated_at"/>
+        <result property="url" column="url"/>
     </resultMap>
 
     <sql id="Task_Column_List">
-        id,user,status,type,condition,created_at,updated_at
+        id,`user`,status,`type`,`condition`,created_at,updated_at,url
     </sql>
 
     <!--查询全部任务-->
@@ -30,10 +31,11 @@
         ORDER BY updated_at DESC
     </select>
 
-    <select id="listTaskByParam" resultMap="task" parameterType="me.ele.download.vo.TaskQueryParam">
+    <select id="queryTaskByParam" resultMap="task" parameterType="me.ele.download.vo.TaskQueryParam">
         SELECT <include refid="Task_Column_List"/>
         from tb_task
-        where created_at between (#{createdAtStart},#{createdAtEnd})
+        where created_at
+        between #{createdAtStart} and #{createdAtEnd}
     </select>
 
     <update id="changeTaskStatus">
@@ -41,6 +43,14 @@
         SET status = #{status}
         WHERE id = #{taskId}
     </update>
+
+
+    <update id="changeTaskUrl">
+        UPDATE tb_task
+        SET url = #{url}
+        WHERE id = #{taskId}
+    </update>
+
 
 
 </mapper>

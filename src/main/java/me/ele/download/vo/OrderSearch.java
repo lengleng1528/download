@@ -22,6 +22,14 @@ public class OrderSearch{
      * */
     private Integer complaintStatus;
 
+
+    ///
+
+
+
+
+    ///
+
     /**
      * 订单索赔状态
      * 0:未索赔, 1:已索赔
