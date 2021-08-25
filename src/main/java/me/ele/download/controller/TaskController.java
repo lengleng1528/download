@@ -25,6 +25,7 @@ public class TaskController {
     public String list(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum, Model model) {
         PageHelper.startPage(pageNum, 5);
         List<Task> list = taskService.listAllTask();
+        System.out.println(list.get(1).getUrl());
         PageInfo<Task> pageInfo = new PageInfo<Task>(list);
         model.addAttribute("pageInfo", pageInfo);
         return "admin/tasks";
@@ -43,9 +44,9 @@ public class TaskController {
     }
 
     //下载接口
-    @PostMapping("/task/download")
-    public String download(){
-
-        return "";
-    }
+//    @PostMapping("/task/download")
+//    public String download(){
+//
+//        return "";
+//    }
 }

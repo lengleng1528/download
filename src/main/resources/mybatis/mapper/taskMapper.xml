@@ -12,6 +12,7 @@
         <result property="condition" column="condition"/>
         <result property="createdAt" column="created_at"/>
         <result property="updatedAt" column="updated_at"/>
+        <result property="url" column="url"/>
     </resultMap>
 
     <sql id="Task_Column_List">
@@ -20,12 +21,12 @@
 
     <!--查询全部任务-->
     <select id="findAll" resultMap="task">
-        SELECT user,status,created_at FROM tb_task
+        SELECT user,status,created_at,url FROM tb_task
         ORDER BY updated_at DESC
     </select>
 
     <select id="findTaskByVo" resultMap="task" parameterType="me.ele.download.vo.TaskSearch">
-        SELECT user,status,created_at FROM tb_task
+        SELECT user,status,created_at,url FROM tb_task
         where status = #{status}
         ORDER BY updated_at DESC
     </select>

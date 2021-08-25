@@ -10,3 +10,4 @@ logging:
     root: info
     com.hogwarts.springboot: debug
   file: log/blog-dev.log
+
