@@ -3,8 +3,13 @@
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
       <option name="id" value="central" />
+<<<<<<< HEAD
       <option name="name" value="Central Repository" />
       <option name="url" value="https://repo.maven.apache.org/maven2" />
+=======
+      <option name="name" value="central" />
+      <option name="url" value="http://repo-sc.alibaba-inc.com/mvn/repository" />
+>>>>>>> origin/lez/111
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />
