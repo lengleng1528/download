@@ -15,8 +15,6 @@ public interface TaskMapper {
 
     List<Task> findTaskByVo(TaskSearch taskSearch);
 
-    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
-    @Insert("insert into tb_task values (#{id},#{user},#{status},#{type},#{condition},#{createdAt},#{updatedAt},#{url)")
     void addTask(Task task);
 
     List<Task> queryTaskByParam(TaskQueryParam taskQueryParam);
